@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site de Dons - Accueil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+        .hero {
+            background-color: #0d6efd;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .btn-donate {
+            background-color: #ffc107;
+            color: #000;
+            font-weight: bold;
+        }
+        .btn-donate:hover {
+            background-color: #e0a800;
+        }
+        .section {
+            padding: 50px 0;
+        }
+        .logo {
+            max-width: 150px;
+            margin: 20px auto;
+            display: block;
+        }
+        .family-img {
+            max-width: 100%;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+/* Animation boutons */
+.btn-donate, .btn-light, .btn-outline-light {
+    transition: transform 0.3s ease;
+}
+
+.btn-donate:hover, .btn-light:hover, .btn-outline-light:hover {
+    transform: scale(1.1);
+}
+
+/* Animation image */
+.family-img {
+    transition: transform 0.5s ease;
+}
+
+.family-img:hover {
+    transform: scale(1.05);
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Logo -->
+    <img src="{{ url_for('static', filename='mon_logo.jpg') }}" alt="Logo" class="logo">
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Ensemble, apportons de l'espoir à ceux qui en ont besoin</h1>
+        <p>Notre mission est simple : venir en aide aux personnes et familles en difficulté. Grâce à vos dons, nous fournissons des repas, un abri, des soins médicaux et un accompagnement essentiel. Chaque geste compte, chaque don change une vie.</p>
+        <a href="#" class="btn btn-donate btn-lg m-2">Faire un Don</a>
+        <a href="#contact" class="btn btn-light btn-lg m-2">Contact</a>
+        <a href="#savoirplus" class="btn btn-outline-light btn-lg m-2">En Savoir Plus</a>
+    </div>
+
+    <!-- Pourquoi nous aider -->
+    <div id="savoirplus" class="section text-center">
+        <div class="container">
+            <h2>Pourquoi nous aider ?</h2>
+            <p>Chaque jour, des centaines de personnes se retrouvent sans ressources ni soutien. 
+            Votre contribution nous permet d’agir concrètement : distribuer des repas chauds, offrir des soins médicaux, 
+            héberger les sans-abri et accompagner les familles vers un avenir meilleur. 
+            En rejoignant notre cause, vous devenez un acteur du changement. Ensemble, faisons reculer la pauvreté et redonnons dignité et espoir à ceux qui en ont le plus besoin.</p>
+            
+            <img src="{{ url_for('static', filename='solidariter.jpg') }}" alt="Famille aidée" class="family-img">
+            <img src="{{ url_for('static', filename='ma_famille.jpg') }}" alt="Famille aidée" class="family-img">
+        </div>
+    </div>
+
+   <!-- Contact -->
+<div id="contact" class="section bg-light">
+    <div class="container">
+        <h2 class="text-center">Contactez-nous</h2>
+        <p class="text-center">Vous avez une question ? Remplissez le formulaire ci-dessous et nous vous répondrons rapidement.</p>
+        
+        <form method="POST" action="/contact" class="mx-auto" style="max-width:600px;">
+            <div class="mb-3">
+                <label for="nom" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="nom" name="nom" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+    </div>
+</div>
+<!-- Message flash -->
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert alert-success" role="alert">
+      {{ messages[0] }}
+    </div>
+  {% endif %}
+{% endwith %}
+
+</body>
+</html>
