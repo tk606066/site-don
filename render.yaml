@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: mon-site-don
+    name: bon-bon-web
     env: python
-    buildCommand: ""
-    startCommand: python app.py
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python app.py"
